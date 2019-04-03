@@ -15,7 +15,7 @@ private:
     float y;
 public:
     Dot(float xx=0.0, float yy=0.0) : x(xx), y(yy) { };
-    Dot centre(Dot&);
+    Dot centre(Dot&); // определение координат вписанного треугольника
     float getx() { return x; };
     float gety() { return y; };
 };
@@ -33,13 +33,14 @@ public:
 
 Dot Dot::centre(Dot& m)
 {
-    float dx = ((this->x + m.x)/2);
-    float dy = ((this->y + m.y)/2);
+    float dx = ((this->x + m.x)/2); // координаты середины отрезка по х
+    float dy = ((this->y + m.y)/2); // координаты середины отрезка по у
     return Dot(dx,dy);
 }
 
 float Triangle::square()
 {
+    /* Вычисляем площадь вписанного треугольника по формуле Герона */
     float a,b,c,p,Sq;
     a = sqrt((this->p1.x-this->p2.x)*(this->p1.x-this->p2.x) + (this->p1.y-this->p2.y)*(this->p1.y-this->p2.y));
     b = sqrt((this->p2.x-this->p3.x)*(this->p2.x-this->p3.x) + (this->p2.y-this->p3.y)*(this->p2.y-this->p3.y));
@@ -72,7 +73,9 @@ int main(){
    W = B.centre(C);
    E = C.centre(A);
    Triangle G(Q,W,E);
-    S = G.square();
-    cout << S;
+   S = G.square();
+   cout << "The square of ypur triangal is = " << S;
 }
+
+
 
